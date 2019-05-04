@@ -1,5 +1,5 @@
 # ----------------------------------------------------------------------------
-# anti-fool-disas.py - Written by Manuel Gebele (m.gebele@tuta.io)
+# anti-fool-disas.py - Written by Manuel Gebele (m.gebele‹ατ›tuta.io)
 #
 # An attempt to improve function detection such as tail-calls and
 # address-taken functions.
