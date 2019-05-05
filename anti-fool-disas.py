@@ -56,7 +56,11 @@ def get_function_disasm(function):
     """
     if function.address not in disasm_cache:
         cmdj = 'pdfj @ ' + function.address
-        disasm_cache[function.address] = r2p.cmdj(cmdj)
+        disasm = r2p.cmdj(cmdj)
+        if not disasm:
+            disasm = { "ops": [ { } ] }
+        [op.setdefault("type", "n/a") for op in disasm['ops']]
+        disasm_cache[function.address] = disasm
     return disasm_cache[function.address]
 
 def get_section(offset):
@@ -64,7 +68,8 @@ def get_section(offset):
     """
     cmdj = 'iSj. @ ' + str(offset)
     section = r2p.cmdj(cmdj)
-    return Section(section['name'])
+    name = section['name'] if section else 'n/a'
+    return Section(name)
 
 def get_noreturns():
     """ Returns a list of well-known noreturns.
@@ -75,12 +80,13 @@ def get_function_references(function):
     """ Returns a list of available data/code references.
     """
     cmdj = 'axffj @ ' + function.name
-    return r2p.cmdj(cmdj)
+    references = r2p.cmdj(cmdj)
+    return references if references else []
 
 def excluded_section_names():
     """ Returns a list of excluded section names.
     """
-    return ['.plt', '.plt.got']
+    return ['.plt', '.plt.got', 'n/a']
 
 def interested_in_section(section):
     """ Returns whether this section is of interest.
@@ -192,11 +198,11 @@ def print_address_taken_functions():
     """
     for f in functions:
         references = search_address_taken_functions(f)
-        for reference in references:
+        for r in references:
             print('Found address-taken function in %s at %s (%s)'
                 % (f.name,
-                reference.address,
-                reference.name))
+                r.address,
+                r.name))
 
 def print_noreturn_fakes():
     """ Prints all potential noreturn fakes in the binary.
