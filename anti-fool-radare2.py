@@ -1,10 +1,11 @@
 # ----------------------------------------------------------------------------
-# anti-fool-disas.py - Written by Manuel Gebele (m.gebele‹ατ›tuta.io)
+# anti-fool-radare2.py
 #
-# An attempt to improve function detection such as tail-calls and
+# Written by Manuel Gebele (m.gebele‹ατ›tuta.io)
+# This code is licensed under the MIT License (MIT). 
+#
+# An attempt to improve radare2's function detection such as tail-calls and
 # address-taken functions.
-#
-# Inspired by the book "Practical Binary Analysis" by Dennis Andriesse.
 # ----------------------------------------------------------------------------
 import sys
 import collections
@@ -202,7 +203,7 @@ def print_noreturn_fakes():
 
 # __main__
 
-SCRIPT_DESCRIPTION = 'Exercise 3: Improving Function Detection'
+SCRIPT_DESCRIPTION = 'Exercise 3: Improving radare2\'s function detection'
 SCRIPT_VERSION = "0.1"
 
 argparser = argparse.ArgumentParser(
