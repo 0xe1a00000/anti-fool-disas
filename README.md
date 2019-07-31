@@ -1,2 +1,2 @@
 # anti-fool-disas
-An attempt to improve function detection such as tail-calls and address-taken functions.
+An attempt to improve radare2's function detection such as tail-calls and address-taken functions.
