@@ -6,11 +6,6 @@
 #
 # An attempt to improve radare2's function detection such as tail-calls and
 # address-taken functions.
-#
-# Sample session:
-# $ chmod +x anti-fool-disas.py
-# $ ./anti-fool-radare2.py
-# $ ./anti-fool-radare2.py -t <binary>
 # ----------------------------------------------------------------------------
 import sys
 import collections
